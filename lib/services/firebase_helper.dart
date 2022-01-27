@@ -8,5 +8,5 @@ class FirebaseHelper {
     _firebaseFirestore.collection('jobs').add(theModelJob.toMap());
   }
 
-  Stream getJobs() {}
+  //Stream getJobs() {}
 }
