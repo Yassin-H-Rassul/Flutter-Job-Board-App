@@ -5,8 +5,6 @@ class AuthService extends ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   String? user;
   void signInAnonymously() {
-    _firebaseAuth
-        .signInAnonymously()
-        .then((value) => {user = "anonymous", print(value.credential)});
+    _firebaseAuth.signInAnonymously().then((value) => {user = "anonymous"});
   }
 }

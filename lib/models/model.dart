@@ -8,17 +8,20 @@ class ModelJob {
   String? salary;
   DateTime? validDate;
   String? email;
+  int? numberOfLikes;
+  int? numberOfViews;
 
-  ModelJob({
-    this.id,
-    this.title,
-    this.category,
-    this.companyName,
-    this.hiers,
-    this.salary,
-    this.validDate,
-    this.email,
-  });
+  ModelJob(
+      {this.id,
+      this.title,
+      this.category,
+      this.companyName,
+      this.hiers,
+      this.salary,
+      this.validDate,
+      this.email,
+      this.numberOfLikes,
+      this.numberOfViews});
 
   factory ModelJob.fromMap(Map<String, dynamic> json) => ModelJob(
         id: json["id"],
@@ -29,6 +32,8 @@ class ModelJob {
         salary: json["salary"],
         validDate: json["validDate"],
         email: json["email"],
+        numberOfLikes: json["numberOfLikes"],
+        numberOfViews: json["numberOfViews"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -40,5 +45,7 @@ class ModelJob {
         "salary": salary,
         "validDate": validDate,
         "email": email,
+        "numberOfLikes": numberOfLikes,
+        "numberOfViews": numberOfViews,
       };
 }
