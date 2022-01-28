@@ -40,6 +40,7 @@ class jobCard extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     FirebaseHelper _firebaseHelper = FirebaseHelper();
+                    _firebaseHelper.updateJobLikes(theCurrentJob.id!);
                   },
                   child: Container(
                     height: 60,
