@@ -12,11 +12,25 @@ class _jobBoardState extends State<favScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('favs'),
-        backgroundColor: Colors.grey,
+            appBar: AppBar(
+               centerTitle: true,
+               title: Text('favorite',
+               style: TextStyle(color: Colors.black),
+               textAlign: TextAlign.center,),
+               backgroundColor: Color(0xFFC5C2C2),
+            ),
+
+     /*floating Action Button */
+     floatingActionButton: FloatingActionButton(
+        
+        onPressed: () {},
+        tooltip: 'Focus Second Text Field',
+        splashColor:  Colors.white,
+        hoverColor: Colors.blueGrey,
+        backgroundColor: Colors.black,
+        child: const Icon(Icons.add),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -37,6 +51,7 @@ class _jobBoardState extends State<favScreen> {
           // jobCard("jobTitle", "jobDes", 45),
         ],
       ),
+
     );
   }
 }
