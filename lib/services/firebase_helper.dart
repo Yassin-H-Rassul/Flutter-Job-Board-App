@@ -10,6 +10,11 @@ class FirebaseHelper {
     _firebaseFirestore.collection('jobs').add(theModelJob.toMap());
   }
 
+  getTheCurrentDocumentId() {
+    final theDocReference = _firebaseFirestore.collection('jobs').doc();
+    return theDocReference;
+  }
+
   Stream<List<ModelJob>> getStreamOfJobs() {
     return _firebaseFirestore.collection('jobs').snapshots().map(
           (v) => v.docs
