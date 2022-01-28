@@ -57,4 +57,21 @@ class FirebaseHelper {
           );
     }
   }
+
+  //get a job by id and convert it to a list of model job
+  Stream<List<ModelJob>> getStreamOfJobById(String id) {
+    return _firebaseFirestore
+        .collection('jobs')
+        .where('id', isEqualTo: id)
+        .snapshots()
+        .map(
+          (docValue) => docValue.docs
+              .map(
+                (e) => ModelJob.fromMap(
+                  e.data(),
+                ),
+              )
+              .toList(),
+        );
+  }
 }
