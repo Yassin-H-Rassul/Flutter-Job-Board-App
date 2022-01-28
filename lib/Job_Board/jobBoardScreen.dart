@@ -11,16 +11,41 @@ class jobBoard extends StatefulWidget {
 class _jobBoardState extends State<jobBoard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar( centerTitle: true,title: Text('Job Board',textAlign: TextAlign.center,),backgroundColor: Colors.grey,
-    ),
 
      
+
+
+
+
+    return Scaffold(
+
+      /* app bar */
+                appBar: AppBar(
+               centerTitle: true,
+               title: Text('Job Board',
+               style: TextStyle(color: Colors.black),
+               textAlign: TextAlign.center,),
+               backgroundColor: Color(0xFFC5C2C2),
+            ),
+     
+     /* floating Action Button   */
+    floatingActionButton: FloatingActionButton(
+       
+        onPressed: () {},
+        tooltip: 'Focus Second Text Field',
+        splashColor:  Colors.white,
+        hoverColor: Colors.blueGrey,
+        backgroundColor: Colors.black,
+        child: const Icon(Icons.add),
+      ),
+
+        /*bottom Navigation Bar */
      bottomNavigationBar: BottomNavigationBar(
     items: const <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: Icon(Icons.list),
         label: 'List',
+      
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.favorite),
@@ -30,35 +55,53 @@ class _jobBoardState extends State<jobBoard> {
     ],
   ),
 
-
-
-
+         /*  body  */
         backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+             Divider(color: Colors.transparent,),// to make a space
 
-        body: Column(
-         
-          children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 300,
+                        child: TextField( 
+                          
+                          decoration: InputDecoration(
+                            border:  OutlineInputBorder(
+                              borderSide:BorderSide(color: Colors.transparent, width: 2.0),
+                            ),
+                            fillColor:   Color(0xFFDFDFDF), filled: true,  
+                            labelText: 'Search',),  
 
-Container(),
-                TextField( 
-                  
-                  decoration: InputDecoration(
-                    fillColor: Colors.grey, filled: true,  
-                  labelText: 'Search',   
-              ),  
-                controller:null ,
+                        controller:null ,
+
+                ),
               ),
+        
 
-Divider(color: Colors.transparent,),
-
-              ElevatedButton(onPressed: (){}, child: Text("Sort by", )),
-
-            jobCard("jobTitle", "jobDes", 45),
-            
-             jobCard("jobTitle", "jobDes", 45),
-             jobCard("jobTitle", "jobDes", 45),
-              
-          ],
+                TextButton(onPressed: (){}, child: Text("Sort by",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color:Colors.black), )),
+                   
+                    ],
+                  ),
+        
+               jobCard("jobTitle", "jobDes", 45,(){}),
+               jobCard("jobTitle", "jobDes", 4455,(){}),
+               jobCard("jobTitle", "jobDes", 45,(){}),
+                jobCard("jobTitle", "jobDes", 45,(){}),
+               jobCard("jobTitle", "jobDes", 4455,(){}),
+               jobCard("jobTitle", "jobDes", 45,(){}),
+                jobCard("jobTitle", "jobDes", 45,(){}),
+               jobCard("jobTitle", "jobDes", 4455,(){}),
+               jobCard("jobTitle", "jobDes", 45,(){}),
+                jobCard("jobTitle", "jobDes", 45,(){}),
+               jobCard("jobTitle", "jobDes", 4455,(){}),
+               jobCard("jobTitle", "jobDes", 45,(){}),
+                
+            ],
+          ),
         )
 
     );
