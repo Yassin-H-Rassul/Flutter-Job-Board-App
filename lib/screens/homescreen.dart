@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:team_game_job_board/Job_Board/jobBoardScreen.dart';
 import 'package:team_game_job_board/services/authService.dart';
 import 'package:team_game_job_board/services/firebase_helper.dart';
 
