@@ -17,6 +17,7 @@ class _homeScreenState extends State<homeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
               child: ElevatedButton(
@@ -24,7 +25,8 @@ class _homeScreenState extends State<homeScreen> {
                   // Provider.of<AuthService>(context, listen: false)
                   //     .signInAnonymously();
                   // final FirebaseHelper help = FirebaseHelper();
-                  // help.likeIncrement(docId: "Ml3ba6fpba3JYEI2GDkl");
+                  // help.updateJobViews("Ml3ba6fpba3JYEI2GDkl");
+                  // help.updateJobLikes("Ml3ba6fpba3JYEI2GDkl");
                 },
                 child: Text("login anony"),
               ),
