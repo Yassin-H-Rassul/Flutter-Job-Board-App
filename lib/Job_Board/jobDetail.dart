@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_game_job_board/models/model.dart';
+import 'package:team_game_job_board/services/firebase_helper.dart';
 
 class jobCard extends StatelessWidget {
   final ModelJob theCurrentJob;
@@ -36,13 +37,19 @@ class jobCard extends StatelessWidget {
                     )
                   ],
                 ),
-                Container(
-                  height: 60,
-                  width: 70,
-                  color: Colors.grey[400],
-                  child: Align(
-                    child: Text("${theCurrentJob.numberOfLikes} likes"),
-                    alignment: Alignment.center,
+                TextButton(
+                  onPressed: () {
+                    FirebaseHelper _firebaseHelper = FirebaseHelper();
+                    _firebaseHelper.updateJobLikes(theCurrentJob.id!);
+                  },
+                  child: Container(
+                    height: 60,
+                    width: 70,
+                    color: Colors.grey[400],
+                    child: Align(
+                      child: Text("${theCurrentJob.numberOfLikes} likes"),
+                      alignment: Alignment.center,
+                    ),
                   ),
                 ),
               ],

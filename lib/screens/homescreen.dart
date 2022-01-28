@@ -23,11 +23,10 @@ class _homeScreenState extends State<homeScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Provider.of<AuthService>(context, listen: false)
-                  //     .signInAnonymously();
-                  // final FirebaseHelper help = FirebaseHelper();
-                  // help.updateJobViews("Ml3ba6fpba3JYEI2GDkl");
-                  // help.updateJobLikes("Ml3ba6fpba3JYEI2GDkl");
+                  Provider.of<AuthService>(context, listen: false)
+                      .signInAnonymously();
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => jobBoard()));
                 },
                 child: Text("login anony"),
               ),
