@@ -74,4 +74,18 @@ class FirebaseHelper {
               .toList(),
         );
   }
+
+  // update numberOfViews by 1
+  updateJobViews(String id) {
+    _firebaseFirestore.collection('jobs').doc(id).update(
+      {'numberOfViews': FieldValue.increment(1)},
+    );
+  }
+
+  // update numberOfLikes by 1
+  updateJobLikes(String id) {
+    _firebaseFirestore.collection('jobs').doc(id).update(
+      {'numberOfLikes': FieldValue.increment(1)},
+    );
+  }
 }

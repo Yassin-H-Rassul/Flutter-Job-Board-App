@@ -18,6 +18,7 @@ class _homeScreenState extends State<homeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
               child: ElevatedButton(
