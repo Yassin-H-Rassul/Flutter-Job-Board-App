@@ -159,7 +159,16 @@ class _jobBoardState extends State<jobBoard> {
                   return ListView.builder(
                       itemCount: snapshots.data!.length,
                       itemBuilder: (context, index) {
-                        return jobCard(snapshots.data![index]);
+                        return TextButton(
+                            onPressed: () {
+                              FirebaseHelper help = FirebaseHelper();
+                              help.updateJobViews(snapshots.data![index].id!);
+                              _showMyDialog(
+                                context,
+                                snapshots.data![index],
+                              );
+                            },
+                            child: jobCard(snapshots.data![index]));
                       });
                 }),
           ),
