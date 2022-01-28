@@ -10,21 +10,51 @@ class FirebaseHelper {
     _firebaseFirestore.collection('jobs').add(theModelJob.toMap());
   }
 
-  // likeIncrement({required String docId}) async {
-  //  FirebaseFirestore.instance
-  // .collection('users')
-  // .where('id', isEqualTo: docId)
-  // .get();
-  //   print(documentStream.);
-  //   // String job = _firebaseFirestore.collection('job').doc(docId).toString();
-  //   // List<ModelJob> selectedjob = jsonDecode(job);
+  Stream<List<ModelJob>> getStreamOfJobs() {
+    return _firebaseFirestore.collection('jobs').snapshots().map(
+          (v) => v.docs
+              .map(
+                (e) => ModelJob.fromMap(e.data()),
+              )
+              .toList(),
+        );
+  }
 
-  //   // int likes = selectedjob[0].numberOfLikes!;
-  //   // _firebaseFirestore
-  //   //     .collection('jobs')
-  //   //     .doc(docId)
-  //   //     .update({"numberOfLikes": likes + 1});
-  // }
+  Stream<List<ModelJob>>? streamOfJobsWithSortedAndSearched(
+      {String? searchWord, String? sortby}) {
+    String? fieldName;
 
-  //Stream getJobs() {}
+    if (searchWord != null) {
+      return _firebaseFirestore
+          .collection('jobs')
+          .where('name', isEqualTo: searchWord)
+          .snapshots()
+          .map(
+            (docValue) => docValue.docs
+                .map(
+                  (e) => ModelJob.fromMap(
+                    e.data(),
+                  ),
+                )
+                .toList(),
+          );
+    } else if (sortby != null) {
+      if (sortby == 'date') fieldName = 'validDate';
+      if (sortby == 'salary') fieldName = 'salary';
+
+      return _firebaseFirestore
+          .collection('jobs')
+          .orderBy(fieldName!)
+          .snapshots()
+          .map(
+            (docValue) => docValue.docs
+                .map(
+                  (e) => ModelJob.fromMap(
+                    e.data(),
+                  ),
+                )
+                .toList(),
+          );
+    }
+  }
 }
