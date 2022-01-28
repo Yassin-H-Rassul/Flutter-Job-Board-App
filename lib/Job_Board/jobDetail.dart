@@ -1,65 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:team_game_job_board/models/model.dart';
 
 class jobCard extends StatelessWidget {
-  final String jobTitle;
-final String jobDes;
-final num likes;
-final Function func;
-
-const jobCard(this.jobTitle,this.jobDes,this.likes,this.func);
+  final ModelJob theCurrentJob;
+  const jobCard(this.theCurrentJob);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: func(),
-      child: Container(
-            padding: EdgeInsets.all(8),
-            child: Column(
+    return Container(
+      padding: EdgeInsets.all(8),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            width: double.infinity,
+            height: 100,
+            color: Colors.grey[300],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container( 
-                  padding: EdgeInsets.all(10),
-                  width: double.infinity,
-                  height: 100,
-                  color: Color(0xFFDFDFDF),
-                  child: Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                       
-                        children: [
-                         Text("job_title: $jobTitle",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                        Divider(
-                          color: Colors.transparent,
-                        ),
-                        Text(" job_description: $jobDes",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
-                      ],
-                      ),
-                    
-                    Center(
-                      child: Container(
-                         height: 90,
-                         width: 90,
-                         decoration: BoxDecoration(
-                           borderRadius: BorderRadius.circular(8),
-                           color: Color(0xFFC5C2C2),
-                           shape:BoxShape.rectangle,
-                         ),
-
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("$likes likes",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),),
-                          ],
-                        ),
-  
-                      ),
+                Column(
+                  children: [
+                    Text(
+                      "job_title: ${theCurrentJob.title}",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                    Divider(
+                      color: Colors.transparent,
+                    ),
+                    Text(
+                      " job_description:  ${theCurrentJob.description}",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     )
-                    ],
+                  ],
+                ),
+                Container(
+                  height: 60,
+                  width: 70,
+                  color: Colors.grey[400],
+                  child: Align(
+                    child: Text("${theCurrentJob.numberOfLikes} likes"),
+                    alignment: Alignment.center,
                   ),
-                )
+                ),
               ],
             ),
-          ),
+          )
+        ],
+      ),
     );
   }
 }

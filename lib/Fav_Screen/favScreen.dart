@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:team_game_job_board/Job_Board/jobDetail.dart';
 
 class favScreen extends StatefulWidget {
-  const favScreen({ Key? key }) : super(key: key);
+  const favScreen({Key? key}) : super(key: key);
 
   @override
   _jobBoardState createState() => _jobBoardState();
@@ -31,34 +31,26 @@ class _jobBoardState extends State<favScreen> {
         child: const Icon(Icons.add),
       ),
 
-
-     bottomNavigationBar: BottomNavigationBar(
-    items: const <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-        icon: Icon(Icons.list),
-          
-        label: 'List',
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'List',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favs',
+          ),
+        ],
       ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.favorite),
-        label: 'Favs',
-        
+      body: Column(
+        children: [
+          // jobCard("jobTitle", "jobDes", 45),
+          // jobCard("jobTitle", "jobDes", 45),
+          // jobCard("jobTitle", "jobDes", 45),
+          // jobCard("jobTitle", "jobDes", 45),
+        ],
       ),
-    ],
-  ),
-
-
-body: Column(
-  
-  children: [
-       Divider(color: Colors.transparent,),
-    
-  jobCard("jobTitle", "jobDes", 45,(){}),
-  jobCard("jobTitle", "jobDes", 45,(){}),
-  jobCard("jobTitle", "jobDes", 45,(){}),
-  jobCard("jobTitle", "jobDes", 45,(){}),
-  ],
-),
 
     );
   }
