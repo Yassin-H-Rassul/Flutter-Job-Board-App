@@ -21,7 +21,8 @@ class ModelJob {
       this.validDate,
       this.email,
       this.numberOfLikes,
-      this.numberOfViews});
+      this.numberOfViews,
+      this.description});
 
   factory ModelJob.fromMap(Map<String, dynamic> json) => ModelJob(
         id: json["id"],
@@ -34,6 +35,7 @@ class ModelJob {
         email: json["email"],
         numberOfLikes: json["numberOfLikes"],
         numberOfViews: json["numberOfViews"],
+        description: json["description"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -47,5 +49,6 @@ class ModelJob {
         "email": email,
         "numberOfLikes": numberOfLikes,
         "numberOfViews": numberOfViews,
+        "description": description,
       };
 }

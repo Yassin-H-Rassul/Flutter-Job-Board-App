@@ -1,49 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:team_game_job_board/models/model.dart';
 
 class jobCard extends StatelessWidget {
-  final String jobTitle;
-final String jobDes;
-final num likes;
-const jobCard(this.jobTitle,this.jobDes,this.likes);
+  final ModelJob theCurrentJob;
+  const jobCard(this.theCurrentJob);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-          padding: EdgeInsets.all(8),
-          child: Column(
-            children: [
-              Container( 
-                padding: EdgeInsets.all(10),
-                width: double.infinity,
-                height: 100,
-                color: Colors.grey,
-                child: Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      padding: EdgeInsets.all(8),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            width: double.infinity,
+            height: 100,
+            color: Colors.grey[300],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
                   children: [
-                    Column(
-                     
-                      children: [
-                       Text("job_title: $jobTitle",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                      Divider(
-                        color: Colors.transparent,
-                      ),
-                      Text(" job_description: $jobDes",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
-                    ],
+                    Text(
+                      "job_title: ${theCurrentJob.title}",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                  
-                  Center(
-                    child: Container(
-                      child: Text("$likes likes",textAlign: TextAlign.center,),
-                      color: Colors.blueGrey,
-                      height: 90,
-                      width: 90,
+                    Divider(
+                      color: Colors.transparent,
                     ),
-                  )
+                    Text(
+                      " job_description:  ${theCurrentJob.description}",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    )
                   ],
                 ),
-              )
-            ],
-          ),
-        );
+                Container(
+                  height: 60,
+                  width: 70,
+                  color: Colors.grey[400],
+                  child: Align(
+                    child: Text("${theCurrentJob.numberOfLikes} likes"),
+                    alignment: Alignment.center,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
