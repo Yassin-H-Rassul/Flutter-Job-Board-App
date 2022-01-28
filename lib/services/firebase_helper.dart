@@ -7,16 +7,18 @@ class FirebaseHelper {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   addAJob(ModelJob theModelJob) {
-    _firebaseFirestore.collection('jobs').add(theModelJob.toMap());
-  }
-
-  getTheCurrentDocumentId() {
     final theDocReference = _firebaseFirestore.collection('jobs').doc();
-    return theDocReference;
+    Map<String, dynamic> theModelJobInMap = theModelJob.toMap();
+    theModelJobInMap['id'] = theDocReference.id;
+    theDocReference.set(theModelJobInMap);
   }
 
   Stream<List<ModelJob>> getStreamOfJobs() {
-    return _firebaseFirestore.collection('jobs').snapshots().map(
+    return _firebaseFirestore
+        .collection('jobs')
+        .orderBy('validDate')
+        .snapshots()
+        .map(
           (v) => v.docs
               .map(
                 (e) => ModelJob.fromMap(e.data()),
@@ -28,7 +30,6 @@ class FirebaseHelper {
   Stream<List<ModelJob>>? streamOfJobsWithSortedAndSearched(
       {String? searchWord, String? sortby}) {
     String? fieldName;
-
     if (searchWord != null) {
       return _firebaseFirestore
           .collection('jobs')
