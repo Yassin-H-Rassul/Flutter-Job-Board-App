@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "513178148985",
+    "project_id": "job-board-af41d",
+    "storage_bucket": "job-board-af41d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513178148985:android:60a4fad8b1ce54bb70b4a8",
+        "android_client_info": {
+          "package_name": "com.example.team_game_job_board"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513178148985-bt2a4fddrc6spbtr0hgp227aaj78c8m9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW4-zdCc-2UoCAjNE1xBxolMubKqLAHDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513178148985-bt2a4fddrc6spbtr0hgp227aaj78c8m9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
