@@ -193,8 +193,6 @@ class _ThirdScreenState extends State<ThirdScreen> {
                   numberOfLikes: 0,
                   numberOfViews: 0,
                 );
-                var theDocReferenceId =
-                    _firebaseHelper.getTheCurrentDocumentId();
                 _firebaseHelper.addAJob(theModelJob);
               },
               child: Card(
