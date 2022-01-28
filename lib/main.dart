@@ -8,12 +8,14 @@ import 'package:team_game_job_board/services/authService.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().then((value) => print('firebase succeedeed.'));
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => AuthService()),
-    ],
-    child: MaterialApp(
-      home: homeScreen(),
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthService()),
+      ],
+      child: MaterialApp(
+        home: homeScreen(),
+      ),
     ),
-  ));
+  );
 }

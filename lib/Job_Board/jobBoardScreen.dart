@@ -91,85 +91,80 @@ class _jobBoardState extends State<jobBoard> {
 
   @override
   Widget build(BuildContext context) {
-
-     
-
-
-
-
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('Job Board',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black)),
-          backgroundColor: Colors.grey,
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _showMyDialog(
-              context,
-              ModelJob(
-                category: 'a category',
-                id: '1',
-                numberOfLikes: 200,
-                numberOfViews: 100,
-                description: 'this is a description about the job ......',
-              ),
-            );
-          },
-          backgroundColor: Colors.black87,
-          child: Icon(Icons.add),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              label: 'List',
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Job Board',
+            textAlign: TextAlign.center, style: TextStyle(color: Colors.black)),
+        backgroundColor: Colors.grey,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _showMyDialog(
+            context,
+            ModelJob(
+              category: 'a category',
+              id: '1',
+              numberOfLikes: 200,
+              numberOfViews: 100,
+              description: 'this is a description about the job ......',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: 'Favs',
+          );
+        },
+        backgroundColor: Colors.black87,
+        child: Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'List',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favs',
+          ),
+        ],
+      ),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              fillColor: Colors.grey[300],
+              filled: true,
+              labelText: 'Search',
             ),
-          ],
-        ),
-        backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                fillColor: Colors.grey[300],
-                filled: true,
-                labelText: 'Search',
-              ),
-              controller: null,
+            controller: null,
+          ),
+          Divider(
+            color: Colors.transparent,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text(
+              "Sort by",
             ),
-            Divider(
-              color: Colors.transparent,
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                "Sort by",
-              ),
-            ),
-            Container(
-              child: StreamBuilder<List<ModelJob>>(
-                  stream: _firebaseHelper.getStreamOfJobs(),
-                  builder: (context, snapshots) {
-                    if (!snapshots.hasData) {
-                      return CircularProgressIndicator();
-                    } else if (snapshots.hasError) {
-                      return Text('the error is : ${snapshots.error}');
-                    }
-                    return ListView.builder(
-                        itemCount: snapshots.data!.length,
-                        itemBuilder: (context, index) {
-                          return jobCard(snapshots.data![index]);
-                        });
-                  }),
-            )
-          ],
-        ));
+          ),
+          Container(
+            height: 400,
+            child: StreamBuilder<List<ModelJob>>(
+                stream: _firebaseHelper.getStreamOfJobs(),
+                builder: (context, snapshots) {
+                  if (!snapshots.hasData) {
+                    return CircularProgressIndicator();
+                  } else if (snapshots.hasError) {
+                    return Text('the error is : ${snapshots.error}');
+                  }
+                  return ListView.builder(
+                      itemCount: snapshots.data!.length,
+                      itemBuilder: (context, index) {
+                        return jobCard(snapshots.data![index]);
+                      });
+                }),
+          ),
+        ],
+      ),
+    );
   }
 }

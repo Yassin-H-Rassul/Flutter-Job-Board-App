@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ModelJob {
   String? id;
   String? title;
@@ -6,7 +8,7 @@ class ModelJob {
   String? description;
   String? hiers;
   String? salary;
-  DateTime? validDate;
+  Timestamp? validDate;
   String? email;
   int? numberOfLikes;
   int? numberOfViews;
