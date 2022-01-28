@@ -13,7 +13,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => AuthService()),
     ],
     child: MaterialApp(
-      home: JobInfo(),
+      home: homeScreen(),
     ),
   ));
 }
