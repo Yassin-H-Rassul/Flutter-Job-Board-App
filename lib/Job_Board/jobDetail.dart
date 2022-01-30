@@ -44,13 +44,19 @@ class jobCard extends StatelessWidget {
                     Divider(
                       color: Colors.transparent,
                     ),
-                    Text(
-                      " ${theCurrentJob.description}",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    )
+                    Container(
+                      width: 220,
+                      child: Text(
+                        "${theCurrentJob.description}",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                    ),
                   ],
                 ),
                 TextButton(

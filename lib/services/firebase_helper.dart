@@ -27,13 +27,12 @@ class FirebaseHelper {
         );
   }
 
-  Stream<List<ModelJob>>? streamOfJobsWithSortedAndSearched(
-      {String? searchWord, String? sortby}) {
+  Stream<List<ModelJob>>? streamOfJobs({String? searchWord, String? sortby}) {
     String? fieldName;
     if (searchWord != null) {
       return _firebaseFirestore
           .collection('jobs')
-          .where('name', isEqualTo: searchWord)
+          .where('title', isEqualTo: searchWord)
           .snapshots()
           .map(
             (docValue) => docValue.docs
@@ -51,6 +50,38 @@ class FirebaseHelper {
       return _firebaseFirestore
           .collection('jobs')
           .orderBy(fieldName!)
+          .snapshots()
+          .map(
+            (docValue) => docValue.docs
+                .map(
+                  (e) => ModelJob.fromMap(
+                    e.data(),
+                  ),
+                )
+                .toList(),
+          );
+    } else if (sortby != null && searchWord != null) {
+      if (sortby == 'date') fieldName = 'validDate';
+      if (sortby == 'salary') fieldName = 'salary';
+
+      return _firebaseFirestore
+          .collection('jobs')
+          .where('title', isEqualTo: searchWord)
+          .orderBy(fieldName!)
+          .snapshots()
+          .map(
+            (docValue) => docValue.docs
+                .map(
+                  (e) => ModelJob.fromMap(
+                    e.data(),
+                  ),
+                )
+                .toList(),
+          );
+    } else {
+      return _firebaseFirestore
+          .collection('jobs')
+          .where('name', isEqualTo: searchWord)
           .snapshots()
           .map(
             (docValue) => docValue.docs
