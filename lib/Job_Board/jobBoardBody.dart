@@ -129,113 +129,115 @@ class _JobBodyState extends State<JobBody> {
         backgroundColor: Colors.grey[200],
         foregroundColor: Colors.black,
       ),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-                width: 240,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    fillColor: Colors.grey[200],
-                    filled: true,
-                    labelText: 'Search',
-                  ),
-                  controller: _searchController,
-                  onChanged: (value) {
-                    setState(() {
-                      if (value.length < 1) {
-                        search = "";
-                      }
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                  width: 240,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      fillColor: Colors.grey[200],
+                      filled: true,
+                      labelText: 'Search',
+                    ),
+                    controller: _searchController,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value.length < 1) {
+                          search = "";
+                        }
 
-                      search = value;
-                    });
-                  },
+                        search = value;
+                      });
+                    },
+                  ),
                 ),
-              ),
-              Divider(
-                color: Colors.transparent,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                color: Colors.black,
-                child: DropdownButton(
-                  iconEnabledColor: Colors.white,
-                  elevation: 8,
-                  dropdownColor: Colors.black,
-                  value: dropdwonvale,
-                  items: const [
-                    DropdownMenuItem(
-                      value: "Sort by",
-                      child: Text(
-                        "Sort by",
-                        style: TextStyle(color: Colors.white),
+                Divider(
+                  color: Colors.transparent,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  color: Colors.black,
+                  child: DropdownButton(
+                    iconEnabledColor: Colors.white,
+                    elevation: 8,
+                    dropdownColor: Colors.black,
+                    value: dropdwonvale,
+                    items: const [
+                      DropdownMenuItem(
+                        value: "Sort by",
+                        child: Text(
+                          "Sort by",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
-                    DropdownMenuItem(
-                      value: "date",
-                      child: Text(
-                        "Date",
-                        style: TextStyle(color: Colors.white),
+                      DropdownMenuItem(
+                        value: "date",
+                        child: Text(
+                          "Date",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
-                    DropdownMenuItem(
-                      value: "salary",
-                      child: Text(
-                        "Salary",
-                        style: TextStyle(color: Colors.white),
+                      DropdownMenuItem(
+                        value: "salary",
+                        child: Text(
+                          "Salary",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
-                  ],
-                  onChanged: (value) {
-                    if (value.toString() != "Sort by") {
-                      setState(() {
-                        print(value);
-                        dropdwonvale = value.toString();
-                        sortBy = value.toString();
-                        print("this is sortby $sortBy");
-                      });
-                    } else {
-                      setState(() {
-                        sortBy = "";
-                      });
+                    ],
+                    onChanged: (value) {
+                      if (value.toString() != "Sort by") {
+                        setState(() {
+                          print(value);
+                          dropdwonvale = value.toString();
+                          sortBy = value.toString();
+                          print("this is sortby $sortBy");
+                        });
+                      } else {
+                        setState(() {
+                          sortBy = "";
+                        });
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              height: 565,
+              child: StreamBuilder<List<ModelJob>>(
+                  stream: _firebaseHelper.streamOfJobs(
+                      searchWord: search.isNotEmpty ? search : null,
+                      sortby: sortBy.isNotEmpty ? sortBy : null),
+                  builder: (context, snapshots) {
+                    if (!snapshots.hasData) {
+                      return CircularProgressIndicator();
+                    } else if (snapshots.hasError) {
+                      return Text('the error is : ${snapshots.error}');
                     }
-                  },
-                ),
-              ),
-            ],
-          ),
-          Container(
-            height: 565,
-            child: StreamBuilder<List<ModelJob>>(
-                stream: _firebaseHelper.streamOfJobs(
-                    searchWord: search.isNotEmpty ? search : null,
-                    sortby: sortBy.isNotEmpty ? sortBy : null),
-                builder: (context, snapshots) {
-                  if (!snapshots.hasData) {
-                    return CircularProgressIndicator();
-                  } else if (snapshots.hasError) {
-                    return Text('the error is : ${snapshots.error}');
-                  }
-                  return ListView.builder(
-                      itemCount: snapshots.data!.length,
-                      itemBuilder: (context, index) {
-                        return TextButton(
-                            onPressed: () {
-                              FirebaseHelper help = FirebaseHelper();
-                              help.updateJobViews(snapshots.data![index].id!);
-                              _showMyDialog(
-                                context,
-                                snapshots.data![index],
-                              );
-                            },
-                            child: jobCard(snapshots.data![index]));
-                      });
-                }),
-          ),
-        ],
+                    return ListView.builder(
+                        itemCount: snapshots.data!.length,
+                        itemBuilder: (context, index) {
+                          return TextButton(
+                              onPressed: () {
+                                FirebaseHelper help = FirebaseHelper();
+                                help.updateJobViews(snapshots.data![index].id!);
+                                _showMyDialog(
+                                  context,
+                                  snapshots.data![index],
+                                );
+                              },
+                              child: jobCard(snapshots.data![index]));
+                        });
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }

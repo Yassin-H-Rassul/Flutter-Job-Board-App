@@ -33,6 +33,7 @@ dependencies:
   firebase_core: ^1.11.0
   flutter:
     sdk: flutter
+  flutter_slidable: ^1.2.0
   font_awesome_flutter: ^9.2.0
   intl: ^0.17.0
   provider: ^6.0.2
