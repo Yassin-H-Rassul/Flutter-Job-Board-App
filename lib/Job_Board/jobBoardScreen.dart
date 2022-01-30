@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_game_job_board/Job_Board/jobDetail.dart';
 import 'package:team_game_job_board/models/model.dart';
+import 'package:team_game_job_board/screens/screen.dart';
 import 'package:team_game_job_board/services/firebase_helper.dart';
 
 class jobBoard extends StatefulWidget {
@@ -100,16 +101,8 @@ class _jobBoardState extends State<jobBoard> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _showMyDialog(
-            context,
-            ModelJob(
-              category: 'a category',
-              id: '1',
-              numberOfLikes: 200,
-              numberOfViews: 100,
-              description: 'this is a description about the job ......',
-            ),
-          );
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ThirdScreen()));
         },
         backgroundColor: Colors.black87,
         child: Icon(Icons.add),
