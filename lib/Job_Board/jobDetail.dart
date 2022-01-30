@@ -16,24 +16,40 @@ class jobCard extends StatelessWidget {
             padding: EdgeInsets.all(10),
             width: double.infinity,
             height: 100,
-            color: Colors.grey[300],
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  offset: Offset(0, 1),
+                  blurRadius: 2,
+                ),
+              ],
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "job_title: ${theCurrentJob.title}",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      " ${theCurrentJob.title}",
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     ),
                     Divider(
                       color: Colors.transparent,
                     ),
                     Text(
-                      " job_description:  ${theCurrentJob.description}",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      " ${theCurrentJob.description}",
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     )
                   ],
                 ),
@@ -45,9 +61,22 @@ class jobCard extends StatelessWidget {
                   child: Container(
                     height: 60,
                     width: 70,
-                    color: Colors.grey[400],
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0, 1),
+                          blurRadius: 2,
+                        ),
+                      ],
+                    ),
                     child: Align(
-                      child: Text("${theCurrentJob.numberOfLikes} likes"),
+                      child: Text(
+                        " likes \n ${theCurrentJob.numberOfLikes} ",
+                        textAlign: TextAlign.center,
+                      ),
                       alignment: Alignment.center,
                     ),
                   ),

@@ -120,27 +120,37 @@ class _jobBoardState extends State<jobBoard> {
         ],
       ),
       backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
-          TextField(
-            decoration: InputDecoration(
-              fillColor: Colors.grey[300],
-              filled: true,
-              labelText: 'Search',
-            ),
-            controller: null,
-          ),
-          Divider(
-            color: Colors.transparent,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              "Sort by",
-            ),
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                width: 250,
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    fillColor: Colors.grey[200],
+                    filled: true,
+                    labelText: 'Search',
+                  ),
+                  controller: null,
+                ),
+              ),
+              Divider(
+                color: Colors.transparent,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  "Sort by",
+                ),
+              ),
+            ],
           ),
           Container(
-            height: 400,
+            height: 565,
             child: StreamBuilder<List<ModelJob>>(
                 stream: _firebaseHelper.getStreamOfJobs(),
                 builder: (context, snapshots) {
