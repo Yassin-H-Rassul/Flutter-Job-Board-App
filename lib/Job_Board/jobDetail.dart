@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:team_game_job_board/models/model.dart';
 import 'package:team_game_job_board/services/firebase_helper.dart';
+import 'package:team_game_job_board/update_job/updateJob.dart';
 
 class jobCard extends StatelessWidget {
   final ModelJob theCurrentJob;
@@ -33,7 +34,10 @@ class jobCard extends StatelessWidget {
           ),
           SlidableAction(
             onPressed: (value) {
-              print('updated');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Updatejob(job: theCurrentJob)));
             },
             backgroundColor: Color(0xFF21B7CA),
             foregroundColor: Colors.white,

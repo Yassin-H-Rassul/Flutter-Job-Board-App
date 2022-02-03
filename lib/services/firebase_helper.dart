@@ -13,6 +13,14 @@ class FirebaseHelper {
     theDocReference.set(theModelJobInMap);
   }
 
+  //updateAjob
+  updateAJob(ModelJob theModelJob) {
+    final theDocReference =
+        _firebaseFirestore.collection('jobs').doc(theModelJob.id);
+    Map<String, dynamic> theModelJobInMap = theModelJob.toMap();
+    theDocReference.update(theModelJobInMap);
+  }
+
   Stream<List<ModelJob>> getStreamOfJobs() {
     return _firebaseFirestore
         .collection('jobs')
