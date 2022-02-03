@@ -8,6 +8,7 @@ class ModelJob {
   String? description;
   String? hiers;
   String? salary;
+  bool? isFav;
   Timestamp? validDate;
   String? email;
   int? numberOfLikes;
@@ -22,6 +23,7 @@ class ModelJob {
       this.salary,
       this.validDate,
       this.email,
+      this.isFav,
       this.numberOfLikes,
       this.numberOfViews,
       this.description});
@@ -35,6 +37,7 @@ class ModelJob {
         salary: json["salary"],
         validDate: json["validDate"],
         email: json["email"],
+        isFav: json["isFav"],
         numberOfLikes: json["numberOfLikes"],
         numberOfViews: json["numberOfViews"],
         description: json["description"],
@@ -49,6 +52,7 @@ class ModelJob {
         "salary": salary,
         "validDate": validDate,
         "email": email,
+        "isFav": isFav,
         "numberOfLikes": numberOfLikes,
         "numberOfViews": numberOfViews,
         "description": description,

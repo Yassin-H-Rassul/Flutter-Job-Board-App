@@ -182,17 +182,17 @@ class _ThirdScreenState extends State<ThirdScreen> {
               onPressed: () {
                 FirebaseHelper _firebaseHelper = FirebaseHelper();
                 ModelJob theModelJob = ModelJob(
-                  category: _categoryController.text,
-                  companyName: _companyNameController.text,
-                  description: _descriptionController.text,
-                  hiers: _hiresController.text,
-                  email: _emailController.text,
-                  salary: _salaryController.text,
-                  title: _titleController.text,
-                  validDate: Timestamp.fromDate(_selectedDate!),
-                  numberOfLikes: 0,
-                  numberOfViews: 0,
-                );
+                    category: _categoryController.text,
+                    companyName: _companyNameController.text,
+                    description: _descriptionController.text,
+                    hiers: _hiresController.text,
+                    email: _emailController.text,
+                    salary: _salaryController.text,
+                    title: _titleController.text,
+                    validDate: Timestamp.fromDate(_selectedDate!),
+                    numberOfLikes: 0,
+                    numberOfViews: 0,
+                    isFav: false);
                 _firebaseHelper.addAJob(theModelJob);
               },
               child: Card(

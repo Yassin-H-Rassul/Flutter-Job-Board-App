@@ -112,6 +112,11 @@ class FirebaseHelper {
         );
   }
 
+  //delete a job by id
+  deleteJobById(String id) {
+    _firebaseFirestore.collection('jobs').doc(id).delete();
+  }
+
   // update numberOfViews by 1
   updateJobViews(String id) {
     _firebaseFirestore.collection('jobs').doc(id).update(
@@ -124,5 +129,29 @@ class FirebaseHelper {
     _firebaseFirestore.collection('jobs').doc(id).update(
       {'numberOfLikes': FieldValue.increment(1)},
     );
+  }
+
+  //change jobs collection update isFave to true or flase
+  updateJobIsFave(String id, bool isFav) {
+    _firebaseFirestore.collection('jobs').doc(id).update(
+      {'isFav': !isFav},
+    );
+  }
+
+  //get a job when isFav is true
+  Stream<List<ModelJob>> getStreamOfFavJobs() {
+    return _firebaseFirestore
+        .collection('jobs')
+        .where('isFav', isEqualTo: true)
+        .snapshots()
+        .map(
+          (docValue) => docValue.docs
+              .map(
+                (e) => ModelJob.fromMap(
+                  e.data(),
+                ),
+              )
+              .toList(),
+        );
   }
 }

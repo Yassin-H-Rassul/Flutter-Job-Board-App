@@ -209,6 +209,7 @@ class _JobBodyState extends State<JobBody> {
               ],
             ),
             Container(
+              alignment: Alignment.center,
               height: 565,
               child: StreamBuilder<List<ModelJob>>(
                   stream: _firebaseHelper.streamOfJobs(
@@ -216,7 +217,11 @@ class _JobBodyState extends State<JobBody> {
                       sortby: sortBy.isNotEmpty ? sortBy : null),
                   builder: (context, snapshots) {
                     if (!snapshots.hasData) {
-                      return CircularProgressIndicator();
+                      return Container(
+                          alignment: Alignment.center,
+                          width: 100,
+                          height: 100,
+                          child: CircularProgressIndicator());
                     } else if (snapshots.hasError) {
                       return Text('the error is : ${snapshots.error}');
                     }

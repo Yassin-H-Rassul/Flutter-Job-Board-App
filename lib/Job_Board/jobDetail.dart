@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:team_game_job_board/models/model.dart';
@@ -22,7 +23,8 @@ class jobCard extends StatelessWidget {
           // A SlidableAction can have an icon and/or a label.
           SlidableAction(
             onPressed: (value) {
-              print('deleted');
+              FirebaseHelper helper = FirebaseHelper();
+              helper.deleteJobById(theCurrentJob.id!);
             },
             backgroundColor: Color(0xFFFE4A49),
             foregroundColor: Colors.white,
@@ -45,7 +47,7 @@ class jobCard extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(8),
               width: double.infinity,
               height: 100,
               decoration: BoxDecoration(
@@ -77,7 +79,7 @@ class jobCard extends StatelessWidget {
                         color: Colors.transparent,
                       ),
                       Container(
-                        width: 220,
+                        width: 170,
                         child: Text(
                           "${theCurrentJob.description}",
                           maxLines: 2,
@@ -90,6 +92,17 @@ class jobCard extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      FirebaseHelper helper = FirebaseHelper();
+                      helper.updateJobIsFave(
+                          theCurrentJob.id!, theCurrentJob.isFav!);
+                    },
+                    icon: theCurrentJob.isFav == true
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
+                    color: Colors.redAccent,
                   ),
                   TextButton(
                     onPressed: () {
